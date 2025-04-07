@@ -135,7 +135,7 @@ void deleteTask() {
     // make sure the line user wants to delete is a valid line
     while (deleteLine < 1 || deleteLine > vectorFile.size()) {
         cout << "Invalid line number!" << endl;
-        cout << "Enter the line you want to delete: ";
+        cout << "Enter the line number you want to delete: ";
         cin >> deleteLine;
         cin.ignore();
     }
