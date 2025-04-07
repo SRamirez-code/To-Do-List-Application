@@ -142,17 +142,17 @@ void deleteTask() {
 
     // open file in input mode
     // clear and populate the vector
-    file.open(pathName, ios::in);
+    file.open(pathName, ios::in); // set to input mode
 
     if (!file.is_open()) {
         cout << "Unable to open file :(" << endl;
         return;
     }
 
-    vectorFile.clear();
+    vectorFile.clear(); // make sure to we are loading everything correctly
 
     while (getline(file, line)) {
-        vectorFile.push_back(line);
+        vectorFile.push_back(line); // reload everything back to vector
     }
 
     file.close();
