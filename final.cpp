@@ -137,6 +137,8 @@ void editTasks() {
     cin >> editLine;
     cin.ignore();
 
+    // error check
+    // make sure the line user wants to edit is a valid line
     while (editLine < 1 || editLine > vectorFile.size()) {
         cout << "Invalid line number!" << endl;
         cout << "Enter the line would you like to edit?: ";
@@ -149,30 +151,36 @@ void editTasks() {
 
     file.open(pathName, ios::in);
 
+    // error check
     if (!file.is_open()) {
         cout << "Unable to open file :(" << endl;
         return;
     }
 
+    // clear everything in vector
     vectorFile.clear();
 
+    // re load file contents to vector
     while (getline(file, line)) {
         vectorFile.push_back(line);
     }
 
     file.close();
 
-    file.open(pathName, ios::out);
+    file.open(pathName, ios::out); // blow away the contents of the file in out mode
 
     if (!file.is_open()) {
         cout << "Unable to open file :(" << endl;
         return;
     }
 
+    // first erase the contents at said position
     vectorFile.erase(vectorFile.begin() + editLine - 1);
+    // then insert the new contents at that said position
     vectorFile.insert(vectorFile.begin() + editLine - 1, edit);
 
-    for (const auto & i : vectorFile) {
+    // re-write everything to the file
+    for (const auto &i : vectorFile) {
         file << i << endl;
     }
 
