@@ -51,7 +51,7 @@ int main() {
                 cout << "Invalid Choice!" << endl; // error check
                 break;
         }
-    } while (done != true); // to break out the program
+    } while (!done); // to break out the program
 
     return 0;
 }
@@ -186,9 +186,7 @@ void editTasks() {
 
     file.close();
 
-
 }
-
 
 void deleteTask() {
     string line;
