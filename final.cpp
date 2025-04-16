@@ -9,6 +9,7 @@ using namespace std;
 char prompt();
 void viewTasks();
 void addTasks();
+void editTasks();
 void deleteTask();
 
 // Global variables:
@@ -37,9 +38,12 @@ int main() {
                 addTasks(); // to add a Task to the file and the vector
                 break;
             case '3':
-                deleteTask(); // to delete a specific line from the file
+                editTasks();//edit task
                 break;
             case '4':
+                deleteTask(); // to delete a specific line from the file
+                break;
+            case '5':
                 cout << "Goodbye!" << endl;
                 done = true; // to exit the program
                 break;
@@ -112,6 +116,19 @@ void addTasks() {
 
     file.close();
 }
+
+void editTasks() {
+    string line;
+    file.open(pathName, ios::out | ios::app);
+
+    //error check
+    if (!file.is_open()) {
+        cout << "Unable to open file :(" << endl;
+        return;
+    }
+
+}
+
 
 void deleteTask() {
     string line;
