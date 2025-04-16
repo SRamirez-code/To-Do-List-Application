@@ -38,7 +38,7 @@ int main() {
                 addTasks(); // to add a Task to the file and the vector
                 break;
             case '3':
-                editTasks(); //edit task
+                editTasks(); // to edit a specific line from the file
                 break;
             case '4':
                 deleteTask(); // to delete a specific line from the file
