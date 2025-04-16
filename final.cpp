@@ -38,7 +38,7 @@ int main() {
                 addTasks(); // to add a Task to the file and the vector
                 break;
             case '3':
-                editTasks();//edit task
+                editTasks(); //edit task
                 break;
             case '4':
                 deleteTask(); // to delete a specific line from the file
@@ -119,13 +119,58 @@ void addTasks() {
 
 void editTasks() {
     string line;
-    file.open(pathName, ios::out | ios::app);
+    string edit;
+    int editLine;
 
-    //error check
-    if (!file.is_open()) {
+    if (vectorFile.empty()) {
+        cout << "There is nothing to edit :)" << endl << endl;
+        return;
+    }
+
+    int count = 0;
+    for (const auto &i: vectorFile) {
+        cout << ++count << "). " << i << endl;
+    }
+
+    cout << "Enter the line would you like to edit?: ";
+    cin >> editLine;
+    cin.ignore();
+
+    while (editLine < 1 || editLine > vectorFile.size()) {
+        cout << "Invalid line number!" << endl;
+        cout << "Enter the line would you like to edit?: ";
+        cin >> editLine;
+        cin.ignore();
+    }
+
+    cout << "Enter what you would like to edit: ";
+    getline(cin, edit);
+
+    file.open(pathName, ios::in);
+
+    if (!file.is_open) {
         cout << "Unable to open file :(" << endl;
         return;
     }
+
+    vectorFile.clear();
+
+    while (getline(file, line)) {
+        vectorFile.push_back(line);
+    }
+
+    file.close();
+
+    file.open(pathName, ios::out | ios::app);
+
+    if (!file.is_open) {
+        cout << "Unable to open file :(" << endl;
+        return;
+    }
+
+
+
+
 
 }
 
@@ -140,7 +185,7 @@ void deleteTask() {
     }
 
     int count = 0;
-    for (const auto & i : vectorFile) {
+    for (const auto &i: vectorFile) {
         cout << ++count << "). " << i << endl;
     }
 
