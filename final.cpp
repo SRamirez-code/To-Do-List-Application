@@ -62,8 +62,9 @@ char prompt() {
     cout << "Enter one of the following:" << endl;
     cout << "1) View tasks" << endl;
     cout << "2) Add a task" << endl;
-    cout << "3) Delete a task" << endl;
-    cout << "4) Exit" << endl;
+    cout << "3) Edit task" << endl;
+    cout << "4) Delete a task" << endl;
+    cout << "5) Exit" << endl;
     cout << "Your Choice: ";
     cin.get(choice);
     cin.ignore(choice, '\n');
@@ -148,7 +149,7 @@ void editTasks() {
 
     file.open(pathName, ios::in);
 
-    if (!file.is_open) {
+    if (!file.is_open()) {
         cout << "Unable to open file :(" << endl;
         return;
     }
@@ -161,15 +162,21 @@ void editTasks() {
 
     file.close();
 
-    file.open(pathName, ios::out | ios::app);
+    file.open(pathName, ios::out);
 
-    if (!file.is_open) {
+    if (!file.is_open()) {
         cout << "Unable to open file :(" << endl;
         return;
     }
 
+    vectorFile.erase(vectorFile.begin() + editLine - 1);
+    vectorFile.insert(vectorFile.begin() + editLine - 1, edit);
 
+    for (const auto & i : vectorFile) {
+        file << i << endl;
+    }
 
+    file.close();
 
 
 }
