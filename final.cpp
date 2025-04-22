@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <limits>
 
 using namespace std;
 
@@ -137,6 +138,20 @@ void editTasks() {
     cin >> editLine;
     cin.ignore();
 
+    while (cin.fail()) {
+        cout << "Invalid input :(" << endl;
+
+        count = 0;
+        for (const auto &i: vectorFile) {
+            cout << ++count << "). " << i << endl;
+        }
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Enter the line would you like to edit?: ";
+        cin >> editLine;
+        cin.ignore();
+    }
+
     // error check
     // make sure the line user wants to edit is a valid line
     while (editLine < 1 || editLine > vectorFile.size()) {
@@ -146,7 +161,7 @@ void editTasks() {
         cin.ignore();
     }
 
-    cout << "Enter what you would like to edit: ";
+    cout << "Enter what you'd like to change: ";
     getline(cin, edit);
 
     file.open(pathName, ios::in);
@@ -180,12 +195,11 @@ void editTasks() {
     vectorFile.insert(vectorFile.begin() + editLine - 1, edit);
 
     // re-write everything to the file
-    for (const auto &i : vectorFile) {
+    for (const auto &i: vectorFile) {
         file << i << endl;
     }
 
     file.close();
-
 }
 
 void deleteTask() {
@@ -205,6 +219,21 @@ void deleteTask() {
     cout << "Enter the line you want to delete: ";
     cin >> deleteLine; // the line the user wants to delete
     cin.ignore();
+
+    while (cin.fail()) {
+        cout << "Invalid input :(" << endl;
+
+        count = 0;
+        for (const auto &i: vectorFile) {
+            cout << ++count << "). " << i << endl;
+        }
+
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Enter the line would you like to edit?: ";
+        cin >> deleteLine;
+        cin.ignore();
+    }
 
     // error check
     // make sure the line user wants to delete is a valid line
