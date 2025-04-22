@@ -138,6 +138,7 @@ void editTasks() {
     cin >> editLine;
     cin.ignore();
 
+    // this is added to prevent a letters or symbols to be entered
     while (cin.fail()) {
         cout << "Invalid input :(" << endl;
 
@@ -220,6 +221,7 @@ void deleteTask() {
     cin >> deleteLine; // the line the user wants to delete
     cin.ignore();
 
+    // this is added to prevent a letters or symbols to be entered
     while (cin.fail()) {
         cout << "Invalid input :(" << endl;
 
