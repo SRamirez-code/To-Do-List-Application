@@ -6,14 +6,12 @@
 
 using namespace std;
 
-// Function Prototypes:
 char prompt();
 void viewTasks();
 void addTasks();
 void editTasks();
 void deleteTask();
 
-// Global variables:
 fstream file;
 vector<string> vectorFile;
 string pathName;
